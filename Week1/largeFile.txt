@@ -1,0 +1,224 @@
+
+Programmazione orientata agli oggetti
+Da Wikipedia, l'enciclopedia libera.
+Niente fonti!
+Questa voce o sezione sull'argomento programmazione non cita le fonti necessarie o quelle presenti sono insufficienti.
+Puoi migliorare questa voce aggiungendo citazioni da fonti attendibili secondo le linee guida sull'uso delle fonti.
+La programmazione orientata agli oggetti (OOP, Object Oriented Programming) è un paradigma di programmazione che permette di definire oggetti software in grado di interagire gli uni con gli altri attraverso lo scambio di messaggi. È particolarmente adatta nei contesti in cui si possono definire delle relazioni di interdipendenza tra i concetti da modellare (contenimento, uso, specializzazione). Un ambito che più di altri riesce a sfruttare i vantaggi della programmazione ad oggetti è quello delle interfacce grafiche.
+Tra gli altri vantaggi della programmazione orientata agli oggetti:
+fornisce un supporto naturale alla modellazione software degli oggetti del mondo reale o del modello astratto da riprodurre
+permette una più facile gestione e manutenzione di progetti di grandi dimensioni
+l'organizzazione del codice sotto forma di classi favorisce la modularità e il riuso di codice
+Indice  [nascondi] 
+1	Caratteristiche
+2	Storia
+3	Classi
+4	Oggetti
+5	Incapsulamento
+6	Ereditarietà
+6.1	Sottotipizzazione
+7	Polimorfismo
+7.1	Binding dinamico o polimorfismo orizzontale
+7.1.1	Esempio - Binding dinamico
+7.2	Polimorfismo verticale
+8	Problemi dei linguaggi OOP
+9	Note
+10	Voci correlate
+11	Collegamenti esterni
+Caratteristiche[modifica | modifica wikitesto]
+La programmazione ad oggetti prevede di raggruppare in una zona circoscritta del codice sorgente (chiamata classe) la dichiarazione delle strutture dati e delle procedure che operano su di esse. Le classi, quindi, costituiscono dei modelli astratti, che a tempo di esecuzione vengono invocate per instanziare o creare oggetti software relativi alla classe invocata. Questi ultimi sono dotati di attributi (dati) e metodi (procedure) secondo quanto definito/dichiarato dalle rispettive classi.
+La parte del programma che fa uso di un oggetto si chiama client.
+Un linguaggio di programmazione è definito ad oggetti quando permette di implementare tre meccanismi usando la sintassi nativa del linguaggio:[1]
+incapsulamento
+ereditarietà
+polimorfismo
+L'incapsulamento consiste nella separazione della cosiddetta interfaccia di una classe dalla corrispondente implementazione, in modo che i client di un oggetto di quella classe possano utilizzare la prima, ma non la seconda.
+L'ereditarietà permette essenzialmente di definire delle classi a partire da altre già definite.
+Il polimorfismo permette di scrivere un client che può servirsi di oggetti di classi diverse, ma dotati di una stessa interfaccia comune; a tempo di esecuzione, quel client attiverà comportamenti diversi senza conoscere a priori il tipo specifico dell'oggetto che gli viene passato.
+Storia[modifica | modifica wikitesto]
+Il concetto di classe può essere considerato l'erede del tipo di dato astratto, un concetto sviluppatosi inizialmente all'interno del paradigma della programmazione procedurale, che prevede la definizione di tipi di dato con cui si può interagire solo attraverso una interfaccia ben definita, nascondendo all'utilizzatore i dettagli dell'implementazione.
+I costrutti sintattici che permettono di definire una classe, nei linguaggi a oggetti, possono essere visti come un supporto strutturato per realizzare i dati astratti.
+Il primo linguaggio di programmazione orientato agli oggetti fu il Simula (1967), seguito negli anni settanta da Smalltalk e da varie estensioni del Lisp. Negli anni ottanta sono state create estensioni orientate ad oggetti del linguaggio C (C++, Objective C, e altri), e di altri linguaggi (Object Pascal). Negli anni novanta è diventato il paradigma dominante, per cui gran parte dei linguaggi di programmazione erano o nativamente orientati agli oggetti o avevano una estensione in tal senso. Linguaggi che supportano solo il paradigma di programmazione orientata agli oggetti sono Smalltalk ed Eiffel. Più spesso si incontra una realizzazione non esclusiva del paradigma di programmazione orientata agli oggetti, come in C++, Java, Delphi, Python, C#, Visual Basic .NET, Perl, PHP (a partire dalla versione 4).
+Classi[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Classe (informatica).
+Le classi definiscono dei tipi di dato e permettono la creazione degli oggetti secondo le caratteristiche definite nella classe stessa. Grazie alle relazioni di ereditarietà, è possibile creare nuove classi a partire da quelle esistenti, estendendole con caratteristiche aggiuntive.
+La classe è composta da:
+attributi (analoghi ai membri di un record) cioè delle variabili e/o costanti che definiscono le caratteristiche o proprietà degli oggetti instanziabili invocando la classe; i valori inizializzati degli attributi sono ottenuti attraverso il cosiddetto costruttore;
+metodi (procedure che operano sugli attributi);
+Un paragone (impreciso) con la matematica è il seguente: si può pensare che una classe definisca un insieme in modo intensivo, ovvero indicandone le caratteristiche invece che elencandone gli elementi, e che gli oggetti siano gli elementi di quell'insieme. Tuttavia, in matematica, il numero degli elementi è una caratteristica intrinseca dell'insieme stesso, e risulta definito nel momento in cui si definisce l'insieme, mentre in programmazione è possibile istanziare una classe un numero di volte arbitrario (teoricamente, da zero ad infinito; in pratica, da zero fino a esaurimento della memoria del calcolatore) e che dipende dall'esecuzione del programma. Per questo motivo, è preferibile considerare la classe come un modello astratto istanziabile.
+In altri termini una classe è paragonabile al progetto di un'infrastruttura che può poi essere messa in opera/esercizio ovvero realizzata o meno con l'istanziazione dei suoi oggetti tutti con medesime caratteristiche, ovvero gli attributi (con valori diversi), su cui opereranno i metodi o funzioni.
+Oggetti[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Oggetto (informatica).
+Un oggetto è una istanza di una classe. Esso è dotato di tutti gli attributi e i metodi definiti dalla classe, ed agisce come un fornitore di "messaggi" (i metodi) che il codice eseguibile del programma (procedure o altri oggetti) può attivare su richiesta.
+Inviare un messaggio ad un oggetto si dice, in gergo, invocare un metodo su quell'oggetto. Il metodo riceve come parametro (spesso implicito) l'oggetto su cui è stato invocato, che può essere referenziato tramite una parola-chiave o una sintassi apposita, anche se è passato come parametro implicito; per esempio, in C++, in Java, e in C# si usa la parola-chiave this ($this in PHP), mentre in Smalltalk, in Objective-C, Python e in Ruby si usa la parola-chiave self.
+Dal punto di vista del calcolatore, ogni oggetto è identificato da una certa zona di memoria, nella quale sono memorizzati gli attributi, e il valore di questi ultimi determina lo stato interno dell'oggetto. Istanziare un oggetto vuol dire allocare memoria ed eventualmente inizializzarla secondo le specifiche definite dalla classe. Molti linguaggi forniscono un supporto per l'inizializzazione automatica di un oggetto, con uno o più metodi speciali, detti costruttori. Analogamente, la fine della vita di un oggetto può essere gestita con un metodo detto distruttore.
+Il codice eseguibile del programma accede a tale zona di memoria sempre e solo secondo le modalità definite dalla classe.
+Secondo il principio noto come information hiding, l'accesso ai campi di un oggetto deve essere permesso solo tramite metodi invocati su quello stesso oggetto. Il vantaggio principale è che il controllo completo sullo stato interno viene assegnato ad una zona ristretta del codice eseguibile del programma (la classe), perché il codice esterno non è autorizzato a modificarlo. In tal caso, risulta possibile imporre dei vincoli sui possibili valori che la tupla degli attributi può o non può assumere, e anche sulle possibili transizioni tra questi stati. Un oggetto quindi può essere visto come una macchina a stati finiti.
+Incapsulamento[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Incapsulamento (informatica).
+L'incapsulamento è la proprietà per cui i dati che definiscono lo stato interno di un oggetto e i metodi che ne definiscono la logica sono accessibili ai metodi dell'oggetto stesso, mentre non sono visibili ai client. Per alterare lo stato interno dell'oggetto, è necessario invocarne i metodi pubblici, ed è questo lo scopo principale dell'incapsulamento. Infatti, se gestito opportunamente, esso permette di vedere l'oggetto come una black-box, cioè una "scatola nera" di cui, attraverso l'interfaccia, è noto cosa fa, ma non come lo fa.
+Ereditarietà[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Ereditarietà (informatica).
+Il meccanismo dell'ereditarietà è utilizzato in fase di strutturazione/definizione/pianificazione del software o in successive estensioni e permette di derivare nuove classi a partire da quelle già definite realizzando una gerarchia di classi. Una classe derivata attraverso l'ereditarietà (sottoclasse o classe figlia), mantiene i metodi e gli attributi delle classi da cui deriva (classi base, superclassi o classi padre); inoltre, può definire i propri metodi o attributi, e ridefinire il codice di alcuni dei metodi ereditati tramite un meccanismo chiamato overriding.
+Quando una classe eredita da una sola superclasse si parla di eredità singola; viceversa, si parla di eredità multipla. Alcuni linguaggi (tra gli altri, Java, Smalltalk) forniscono supporto esclusivo all'ereditarietà singola. Altri (C++, Python) prevedono anche l'ereditarietà multipla.
+Alcuni linguaggi tipizzati (Java, C#) prevedono l'ereditarietà delle interfacce, oltre che delle classi.
+L'ereditarietà può essere usata come meccanismo per ottenere l'estensibilità e il riuso del codice, e risulta particolarmente vantaggiosa quando viene usata per definire sottotipi, sfruttando le relazioni is-a esistenti nella realtà di cui la struttura delle classi è una modellizzazione. Oltre all'evidente riuso del codice della superclasse, l'ereditarietà permette la definizione di codice generico attraverso il meccanismo del polimorfismo.
+Esempio
+Se nel programma esiste già una classe MezzoDiTrasporto che ha come proprietà i dati di posizione, velocità, destinazione e carico utile, e occorre una nuova classe Aereo, è possibile crearla direttamente dall'oggetto MezzoDiTrasporto dichiarando una classe di tipo Aereo che eredita da MezzoDiTrasporto e aggiungendovi anche l'attributo che identifica la quota di crociera, con il vantaggio che la nuova classe acquisirà tutti i membri definiti in MezzoDiTrasporto per il fatto stesso di esserne sottoclasse.
+Sottotipizzazione[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Sottotipo (informatica).
+Sebbene concettualmente esistano delle differenze ben marcate, il meccanismo di eredità fra classi (subclassing), attraverso il meccanismo del polimorfismo per inclusione, permette nei linguaggi ad oggetti di modellare l'eredità fra tipi (subtyping).
+Secondo il principio di sostituzione di Liskov, un tipo S è un sottotipo di T quando è possibile sostituire tutte le istanze di T con delle istanze di S mantenendo intatto il funzionamento del programma.
+Con gli opportuni accorgimenti è possibile creare una relazione di classe-sottoclasse che rispetti anche i vincoli della relazione tipo-sottotipo. Da un punto di vista sintattico, ciò richiede che tutti i metodi della superclasse siano presenti nella sottoclasse, e che le rispettive signature siano compatibili. Di conseguenza, una sottoclasse che voglia definire un sottotipo può ridefinire i metodi della superclasse, ma non può eliminarli. La signature dei metodi può essere solo parzialmente modificata, rispettando dei vincoli sulla variazione dei parametri rispetto alla catena di eredità.
+Tuttavia, il rispetto delle restrizioni sintattiche non è sufficiente, da solo, ad assicurare il rispetto della condizione di Liskov: la ridefinizione dei metodi o la riassegnazione degli attributi[non chiaro], infatti, potrebbe compromettere la compatibilità in tempo di esecuzione.
+In molti linguaggi, nella definizione di una sottoclasse, si può decidere di eliminare o cambiare le proprietà di accesso a un metodo ereditato. In tal caso, l'operazione di subclassing non corrisponde a quella di subtyping. Alcuni linguaggi a oggetti, in particolare Sather, dividono esplicitamente a livello sintattico subclassing e subtyping.
+In linguaggi con tipizzazione statica ed esplicita, la sottotipizzazione viene supportata attraverso il polimorfismo per inclusione delle sottoclassi: una stessa variabile può fare riferimento ad un oggetto del tipo per cui è stata dichiarata, o di tipi da esso derivati. Il tipo dell'oggetto individuato dalla variabile, quindi, viene definito a runtime (binding dinamico), e può essere modificato durante l'esecuzione del programma.
+Polimorfismo[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Polimorfismo (informatica).
+Nella programmazione ad oggetti, con il nome di polimorfismo per inclusione, si indica il fatto che lo stesso codice eseguibile può essere utilizzato con istanze di classi diverse, aventi una superclasse comune.
+Binding dinamico o polimorfismo orizzontale[modifica | modifica wikitesto]
+Exquisite-kfind.png	Lo stesso argomento in dettaglio: Binding.
+Il polimorfismo è particolarmente utile quando la versione del metodo da eseguire viene scelta sulla base del tipo di oggetto effettivamente contenuto in una variabile a runtime (invece che al momento della compilazione). Questa funzionalità è detta binding dinamico (o late-binding), ed è supportato dai più diffusi linguaggi di programmazione ad oggetti.
+Se una variabile di tipo A ha due sottotipi (sottoclassi) B e C, che ridefiniscono entrambe il metodo m(), l'oggetto contenuto nella variabile potrà essere di tipo A, B o C, e quando sulla variabile viene invocato il metodo m() viene eseguita la versione appropriata per il tipo di oggetto contenuto nella variabile in quel momento.
+Per ritornare all'esempio precedente, si suppone che un "Aereo" debba affrontare procedure per l'arrivo e la partenza molto più complesse di quelle di un normale camion, come in effetti è: allora le procedure arrivo() e partenza() devono essere cambiate rispetto a quelle della classe base "MezzoDiTrasporto". Si provvede quindi a ridefinirle nella classe "Aereo" in modo da ottenere il comportamento necessario (polimorfismo): a questo punto, dalla lista di mezzi è possibile prendere qualsiasi mezzo e chiamare arrivo() o partenza() senza più doversi preoccupare di che cos'è l'oggetto che si sta maneggiando: che sia un mezzo normale o un aereo, si comporterà rispondendo alla stessa chiamata sempre nel modo giusto.
+Il supporto al binding dinamico non è necessariamente automatico in tutti i linguaggi di programmazione ad oggetti. Ad esempio in Java, Smalltalk, Python, Ruby, il binding dinamico è implicitamente usato come comportamento di default nelle classi polimorfe, mentre in C++ viene abilitato inserendo la keyword virtual nella signature del metodo interessato.
+Il supporto runtime di una chiamata di metodo polimorfa richiede che a una variabile polimorfa venga associato un metadato implicito che contiene il tipo del dato contenuto nella variabile in un dato momento, oppure la tabella delle funzioni polimorfe.
+Esempio - Binding dinamico[modifica | modifica wikitesto]
+Si supponga di avere il seguente pseudo codice in Java dove "Classe2" è una sottoclasse di "Classe1":
+void metodo(int input) {
+    Classe1 c;
+    
+    if (input > 0)
+        c = new Classe1();
+    else
+        c = new Classe2();
+    
+    c.faiQualcosaDiImportante();
+}
+Si noti che faiQualcosaDiImportante è un metodo definito da Classe1 ma potrebbe essere stato ridefinito in Classe2 (perché magari deve essere stampato in maniera diversa). Il compilatore non può sapere a tempo di compilazione se c è un oggetto associato alla classe "Classe1" o "Classe2". Tramite il binding dinamico la scelta su quale metodo effettivamente linkare sarà effettuata durante l'esecuzione (runtime), quando il metodo viene effettivamente chiamato.
+Polimorfismo verticale[modifica | modifica wikitesto]
+Con l'espressione polimorfismo verticale si intende la possibilità di ridefinire o riutilizzare metodi anche in classi derivate.
+Problemi dei linguaggi OOP[modifica | modifica wikitesto]
+Voce da controllare
+Questa voce o sezione sull'argomento informatica è ritenuta da controllare.
+Motivo: Sezione dilettantesca, priva di fonti. La scelta dei "problemi" dei lingaggi OOP sembra assolutamente arbitraria e discutibile. Da sostituire con una sezione sulle critiche al paradigma basata su fonti secondarie.
+Partecipa alla discussione e/o correggi la voce. Segui i suggerimenti del progetto di riferimento.
+Alcuni meccanismi inclusi nella gestione degli oggetti causano un overhead in termini di tempo e memoria, che in determinate situazioni può portare a problemi di efficienza.
+Alcuni linguaggi come Java e C++ preferiscono un approccio ibrido rispetto all'OOP "puro", ad esempio del linguaggio Smalltalk, prevedendo che alcuni tipi di dati primitivi non siano considerati come oggetti. I vantaggi di quest'approccio sono particolarmente evidenti in presenza di computazioni numeriche; di contro, ogni volta che è necessario un oggetto in luogo di un tipo primitivo è necessario ricorrere ad un apposito wrapper, e questo può portare a cali prestazionali.
+Tale wrapper può anche essere dato automaticamente dal linguaggio stesso, come nel caso del Java o del .Net, tramite una conversione automatica chiamata "autoboxing" (inscatolamento automatico). Essa permette di mettere valori di tipi primitivi (es. interi, caratteri) all'interno di oggetti, quindi di richiamare parti di codice che vorrebbero oggetti senza scrivere esplicitamente l'istruzione di creazione dell'oggetto che racchiude il valore. Tale inscatolamento risolve il problema di scrivere un wrapper a mano, ma ovviamente non può far nulla per il calo prestazionale, in quanto viene risolto a tempo di compilazione, cioè dal compilatore, non dalla macchina virtuale che esegue il programma.
+Altre critiche all'OOP riguardano la maggiore complessità strutturale rispetto ai linguaggi procedurali, a fronte delle limitazioni introdotte per seguire il paradigma a oggetti. Esistono inoltre alcune carenze concettuali (in particolare riguardo alla sottotipizzazione), che aggiunte alle diverse implementazioni nei linguaggi possono causare problemi al programmatore. Ad esempio il funzionamento in contesti polimorfi non è garantito quando i metodi vengano ridefiniti in una catena di eredità. Inoltre cambiare le definizioni nelle classi base può portare a introdurre errori in cascata nelle sottoclassi (problema della classe base fragile).
+Note[modifica | modifica wikitesto]
+^ Questi meccanismi possono essere simulati anche nei linguaggi che non sono considerati ad oggetti, a patto di adottare altri costrutti e di rispettare determinate convenzioni durante la scrittura del testo del programma.
+Voci correlate[modifica | modifica wikitesto]
+Progettazione orientata agli oggetti
+Programmazione orientata agli eventi
+Programmazione orientata agli aspetti
+Base di dati a oggetti
+Copia di un oggetto
+Collegamenti esterni[modifica | modifica wikitesto]
+bluej: Ambiente di sviluppo open source per l'insegnamento della programmazione ad oggetti (in Java), bluej.org.
+Guida programmazione orientata agli oggetti La guida, oltre a fornire la teoria di base della OOP, è ricca di esempi pratici in tutti i linguaggi più usati dagli sviluppatori web: da C# a Actionscript, fino a Java e Python.
+Controllo di autorità	LCCN: (EN) sh87007503 · GND: (DE) 4233947-9 · BNF: (FR) cb12115131k (data)
+informatica Portale Informatica: accedi alle voci di Wikipedia che trattano di informatica
+Categoria: Programmazione orientata agli oggetti| [altre]
+Menu di navigazione
+Accesso non effettuatodiscussionicontributiRegistratiEntraVoceDiscussioneLeggiModificaModifica wikitestoCronologia
+
+Ricerca
+Vai
+Pagina principale
+Ultime modifiche
+Una voce a caso
+Vetrina
+Aiuto
+Comunità
+Portale Comunità
+Bar
+Il Wikipediano
+Fai una donazione
+Contatti
+Strumenti
+Puntano qui
+Modifiche correlate
+Carica su Commons
+Pagine speciali
+Link permanente
+Informazioni sulla pagina
+Elemento Wikidata
+Cita questa voce
+Stampa/esporta
+Crea un libro
+Scarica come PDF
+Versione stampabile
+In altre lingue
+Afrikaans
+العربية
+Azərbaycanca
+Беларуская
+Беларуская (тарашкевіца)‎
+Български
+বাংলা
+Bosanski
+Català
+Čeština
+Dansk
+Deutsch
+Ελληνικά
+English
+Esperanto
+Español
+Eesti
+Euskara
+فارسی
+Suomi
+Français
+Galego
+עברית
+हिन्दी
+Hrvatski
+Magyar
+Հայերեն
+Bahasa Indonesia
+Ilokano
+Ido
+Íslenska
+日本語
+ქართული
+Қазақша
+한국어
+Кыргызча
+Latina
+Lietuvių
+Latviešu
+Македонски
+മലയാളം
+Монгол
+Bahasa Melayu
+မြန်မာဘာသာ
+Norsk nynorsk
+Norsk bokmål
+Polski
+Português
+Română
+Русский
+Русиньскый
+Sicilianu
+Scots
+Srpskohrvatski / српскохрватски
+Simple English
+Slovenčina
+Shqip
+Српски / srpski
+Svenska
+தமிழ்
+ไทย
+Türkçe
+Українська
+اردو
+Tiếng Việt
+吴语
+中文
+Modifica collegamenti
+Questa pagina è stata modificata per l'ultima volta il 15 gen 2016 alle 18:10.
+Il testo è disponibile secondo la licenza Creative Commons Attribuzione-Condividi allo stesso modo; possono applicarsi condizioni ulteriori. Vedi le Condizioni d'uso per i dettagli. Wikipedia® è un marchio registrato della Wikimedia Foundation, Inc. 
+Politica sulla privacyInformazioni su WikipediaAvvertenzeSviluppatoriDichiarazione sui cookieVersione mobileWikimedia Foundation Powered by MediaWiki

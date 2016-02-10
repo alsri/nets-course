@@ -26,6 +26,7 @@ public class DataThread implements Runnable{
 		DataThread d1=new DataThread();
 		DataThread d2=new DataThread();
 		Thread t1= new Thread(d1);
+		//Thread t2= new Thread(d1);
 		Thread t2= new Thread(d2);
 		t1.start();
 		t2.start();
