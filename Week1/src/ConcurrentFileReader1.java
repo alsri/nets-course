@@ -7,18 +7,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class ConcurrentFileReader implements Runnable {
+public class ConcurrentFileReader1 implements Runnable {
 
-	static BufferedReader reader;
-	static BufferedWriter writer;
+	private BufferedReader reader;
+	private BufferedWriter writer;
+	public ConcurrentFileReader1(BufferedReader r, BufferedWriter w){
+		this.reader=r;
+		this.writer=w;
+	}
 	
 	public void run(){
 		System.out.println(Thread.currentThread().getId()+" running....");
 		String line="";
 		try {
 			while (line!=null){
-				line=ConcurrentFileReader.reader.readLine();
-				ConcurrentFileReader.writer.write(Thread.currentThread().getId()+" read: "+line+"\n");
+				line=this.reader.readLine();
+				this.writer.write(Thread.currentThread().getId()+" read: "+line+"\n");
 			}
 			System.out.println(Thread.currentThread().getId()+" finished.");
 		} catch (IOException e) {
@@ -31,10 +35,10 @@ public class ConcurrentFileReader implements Runnable {
 	public static void main(String[] args) {
 		try {
 			ArrayList<Thread> threads= new ArrayList<Thread>();
-			ConcurrentFileReader.reader = new BufferedReader(new FileReader("file.txt"));
-			ConcurrentFileReader.writer = new BufferedWriter(new FileWriter("fileCopy.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("file.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("fileCopy.txt"));
 			for (int i=0;i<5;i++){
-				ConcurrentFileReader r=new ConcurrentFileReader();
+				ConcurrentFileReader1 r=new ConcurrentFileReader1(reader,writer);
 				Thread t= new Thread(r);
 				t.start();
 				threads.add(t);
@@ -43,8 +47,8 @@ public class ConcurrentFileReader implements Runnable {
 				t.join();
 			}
 			//here I know all threads are done so I can close the file
-			ConcurrentFileReader.reader.close();
-			ConcurrentFileReader.writer.close();
+			reader.close();
+			writer.close();
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

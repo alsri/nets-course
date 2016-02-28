@@ -14,7 +14,7 @@ public class ThreadInRunnable implements Runnable {
 		System.out.println(Thread.currentThread().getId()+": Created");
 		Random r = new Random(System.currentTimeMillis()*2000);
 		double rn=r.nextDouble();
-		System.out.println(rn);
+		//System.out.println(rn);
 		if (rn<this.probability){
 			System.out.println(Thread.currentThread().getId()+": Creating a new thread");
 			ThreadInRunnable runnable= new ThreadInRunnable(this.probability*0.9);

@@ -2,20 +2,20 @@
 public class MyFirstThread extends Thread {
 	
 	public void threadPrint(String message){
-		System.out.println("Thread "+this.getId()+": "+message);
+		System.out.println("Thread "+Thread.currentThread().getId()+": "+message);
 	}
 	
 	public void printInfo(){
-		try {
+		//try {
 			this.threadPrint("I am a new thread.");
-			this.threadPrint(Thread.currentThread().toString());
-			Thread.sleep(2000);
+			this.threadPrint(this.toString());
+			//Thread.sleep(2000);
 			this.threadPrint("My name is "+ this.getName());
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			this.threadPrint("My priority is "+ this.getPriority());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		//} catch (InterruptedException e) {
+			//e.printStackTrace();
+		//}
 		
 		
 	}
@@ -28,7 +28,7 @@ public class MyFirstThread extends Thread {
 		
 		for (int i=0;i<10;i++){
 			MyFirstThread thread=new MyFirstThread();
-			thread.start(); //not thread.run()!!!!!!
+			thread.run(); //not thread.run()!!!!!!
 		}
 
 	}

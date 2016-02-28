@@ -4,31 +4,21 @@ import java.io.*;
 public class InterruptedThread implements Runnable{
 
 	public void run(){
-		BufferedWriter w=null;
 		try {
-			//generate random numbers and write to file, until interrupted
+			//generate random numbers and write to screen, until interrupted
 			Random r = new Random(System.currentTimeMillis()*1000);
-			 w= new BufferedWriter(new FileWriter("random.txt"));
 			while(true){
 				if (Thread.interrupted()){
 					throw new InterruptedException("Interrupted outside sleep");
 				}
-				w.write(r.nextDouble()+",");
-				Thread.sleep(1000);
+				System.out.print(r.nextDouble()+", ");
+				//Thread.sleep(1000);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		catch (InterruptedException e) {
-			System.out.println("I was interruped, I am stopping ("+e.getMessage()+")");
+			System.out.println("\nI was interruped, I am stopping ("+e.getMessage()+")");
 		}
-		finally{
-			try {
-				w.close();
-			} catch (IOException e) {
-			}
-		}
-		
+
 	}
 	
 	public static void main(String args[]){
@@ -42,7 +32,7 @@ public class InterruptedThread implements Runnable{
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 			}
-			if (r.nextDouble()<0.2){
+			if (r.nextDouble()<0.5){
 				t.interrupt();
 				interrupted=true;
 			}

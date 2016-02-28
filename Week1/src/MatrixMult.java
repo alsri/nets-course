@@ -101,6 +101,7 @@ public class MatrixMult implements Runnable {
 			}
 			System.out.println("");
 		}
+		return;
 	}
 	
 	public static void multWithoutThreads(ArrayList<ArrayList<Double>> m1, ArrayList<ArrayList<Double>> m2){
@@ -131,8 +132,8 @@ public class MatrixMult implements Runnable {
 			ArrayList<ArrayList<Double>> m1, m2;
 			//m1=readMatrix("matrix1.txt");
 			//m2=readMatrix("matrix2.txt");
-			m1=generateLargeMatrix(2, 10000);
-			m2=generateLargeMatrix(10000,1000);
+			m1=generateLargeMatrix(1000, 1000);
+			m2=generateLargeMatrix(1000,1000);
 			long time= System.currentTimeMillis();
 			multWithThreads(m1, m2);
 			System.out.println("With threads, finished in seconds: "+ ((System.currentTimeMillis()-time)/1000.0));
