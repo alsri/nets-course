@@ -6,7 +6,7 @@ public class Writer implements Runnable{
 		this.c=c;
 	}
 	public void print(String message){
-		System.out.format("%n%d Writer %d:%s",System.currentTimeMillis(),
+		System.out.format("%n%d Writer %d:%s",System.nanoTime(),
 				Thread.currentThread().getId(),message);
 	}
 	@Override

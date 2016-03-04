@@ -38,7 +38,7 @@ public class WordSearch implements Runnable{
 		
 	}
 	
-	public static void main(String[] args) {	
+	public static void main(String[] args) throws InterruptedException {	
 		try {
 				//first open file for all threads
 				WordSearch.file= new BufferedReader(new FileReader("largeFile.txt"));
@@ -53,6 +53,7 @@ public class WordSearch implements Runnable{
 				//now start threads
 				for (Thread t : WordSearch.workers){
 					t.start();
+					Thread.sleep(1000);
 				}
 			
 		} catch (FileNotFoundException e) {

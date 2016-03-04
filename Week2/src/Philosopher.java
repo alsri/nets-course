@@ -24,15 +24,21 @@ public class Philosopher implements Runnable{
 //		this.print("Picking up chopsticks");
 //		//first pick up the chopsticks, first left then right
 //		this.leftChopstick.lockInterruptibly();
-//
-//		this.rightChopstick.lockInterruptibly();
-//		this.print("Starting to eat");
-//		//Thread.sleep((System.nanoTime()%10)*1000);
-//		Thread.sleep(5000);
-//		this.print("Finished eating");
-//		//release the chopsticks
-//		this.rightChopstick.lockInterruptibly();
-//		this.leftChopstick.lockInterruptibly();
+//		try{
+//			//Thread.sleep(50);
+//			this.rightChopstick.lockInterruptibly();
+//			try{
+//				this.print("Starting to eat");
+//				//Thread.sleep((System.nanoTime()%10)*1000);
+//				Thread.sleep(5000);
+//				this.print("Finished eating");
+//			} finally {
+//				//release the chopsticks
+//				this.rightChopstick.unlock();
+//			}
+//		} finally {
+//			this.leftChopstick.unlock();
+//		}
 //		this.print("Left chopsticks");
 //		
 //	}
@@ -42,22 +48,28 @@ public class Philosopher implements Runnable{
 		while (!ate){
 			//first pick up the chopsticks, first left then right
 			if(this.leftChopstick.tryLock()){
-				this.print("Picked up left chopstick");
-				if (this.rightChopstick.tryLock()){
-					this.print("Picked up right chopstick");
-					//Thread.sleep((System.nanoTime()%10)*1000);
-					ate=true;
-					this.print("Eating");
-					Thread.sleep(5000);
-					this.rightChopstick.unlock();
-					this.print("Dropped right chopstick");
+				try{
+					this.print("Picked up left chopstick");
+					if (this.rightChopstick.tryLock()){
+						try{
+							this.print("Picked up right chopstick");
+							//Thread.sleep((System.nanoTime()%10)*1000);
+							ate=true;
+							this.print("Eating");
+							Thread.sleep(5000);
+						} finally{
+							this.rightChopstick.unlock();
+							this.print("Dropped right chopstick");
+						}
+					}
+					else
+					{
+						this.print("Right chopstick not available.");
+					}
+				} finally{
+					this.leftChopstick.unlock();
+					this.print("Dropped left chopstick");
 				}
-				else
-				{
-					this.print("Right chopstick not available.");
-				}
-				this.leftChopstick.unlock();
-				this.print("Dropped left chopstick");
 			}
 			else
 			{

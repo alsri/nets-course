@@ -15,17 +15,21 @@ public class Traveler implements Runnable{
 	@Override
 	public void run() {
 		Random rand = new Random(System.currentTimeMillis());
+		this.print("I am a new traveler");
 		try{
-			this.print("I am a new traveler");
 			this.ticketCounters.acquire();
 			this.print("I am buying my ticket");
-			Thread.sleep(rand.nextInt(1000));
-			this.print("Got my ticket");
-			this.ticketCounters.release();
+			try{
+				Thread.sleep(rand.nextInt(1000));
+				this.print("Got my ticket");
+			}finally{
+				this.ticketCounters.release();
+			}
 			this.print("Done, getting on board");
 		}catch (InterruptedException e){
 			this.print("Something went wrong");
-		}	
+		}
+			
 	}
 	
 }

@@ -30,18 +30,24 @@ public class SmartPhilosopher implements Runnable{
 		
 		//first pick up first chopstick, then second 
 		this.firstChopstick.lockInterruptibly();
-		this.print("Got one chopstick");
-		this.secondChopstick.lockInterruptibly();
-		this.print("Got second chopstick");
-		this.print("Starting to eat");
-		//Thread.sleep((System.nanoTime()%10)*1000);
-		Thread.sleep(5000);
-		this.print("Finished eating");
-		//release the chopsticks
-		this.secondChopstick.unlock();
-		this.print("Releasing second chopstick");
-		this.firstChopstick.unlock();
-		this.print("Releasing first chopstick");
+		try{
+			this.print("Got one chopstick");
+			this.secondChopstick.lockInterruptibly();
+			try{
+				this.print("Got second chopstick");
+				this.print("Starting to eat");
+				//Thread.sleep((System.nanoTime()%10)*1000);
+				Thread.sleep(5000);
+				this.print("Finished eating");
+			} finally{
+			//release the chopsticks
+				this.secondChopstick.unlock();
+				this.print("Releasing second chopstick");
+			}
+		} finally {
+			this.firstChopstick.unlock();
+			this.print("Releasing first chopstick");
+		}
 		
 	}
 	

@@ -17,14 +17,17 @@ public class Child implements Runnable {
 			while(true){
 				this.print("I am hungry, I want to eat.");
 				this.food.getLock().lockInterruptibly();
-				while (this.food.isEmpty()){
-					this.print("There is no food :(");
-					food.getFoodFull().await();
+				try{
+					while (this.food.isEmpty()){
+						this.print("There is no food :(");
+						food.getFoodFull().await();
+					}
+					this.print("Yay, eating now :)");
+					food.eat();
+					food.getFoodEmpty().signal();
+				} finally {
+					this.food.getLock().unlock();
 				}
-				this.print("Yay, eating now :)");
-				food.eat();
-				food.getFoodEmpty().signal();
-				this.food.getLock().unlock();
 				this.print("Going back to sleep");
 				Thread.sleep(1000);
 			}

@@ -41,22 +41,24 @@ public class Nanny implements Runnable{
 			this.print("Created");
 			while(true){
 				this.food.getLock().lockInterruptibly();
-				while(this.food.isFull()){
-					this.print("Waiting for one baby to eat");
-					this.food.getFoodEmpty().await();
+				try{
+					while(this.food.isFull()){
+						this.print("Waiting for one baby to eat");
+						this.food.getFoodEmpty().await();
+					}
+					this.print("Plate empty, cooking");
+					this.food.cook("Soup");
+					this.food.getFoodFull().signal();
+				} finally{
+					this.food.getLock().unlock();
 				}
-				this.print("Plate empty, cooking");
-				this.food.cook("Soup");
-				this.food.getFoodFull().signal();
-				this.food.getLock().unlock();
 				this.print("Now resting a bit");
 				Thread.sleep(1000);
 			}
-			}catch (InterruptedException e){
+		}catch (InterruptedException e){
 			this.print("Interrupted");
 			return;
 		}
-
-}
+	}
 }
 
