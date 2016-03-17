@@ -12,8 +12,8 @@ public class InvokeAnyMain {
 		for (int i=0;i<5;i++){
 			tasks.add(new ExceptionTask());
 		}
-		tasks.add(new Power(3,2));
-		tasks.add(new Power(4,2));
+		//tasks.add(new Power(3,2));
+		//tasks.add(new Power(4,2));
 		for (int i=0;i<5;i++){
 			tasks.add(new ExceptionTask());
 		}
@@ -24,7 +24,7 @@ public class InvokeAnyMain {
 			System.out.println("Result is "+result);
 		} catch (InterruptedException e) {
 		}catch ( ExecutionException e) {
-			System.out.println("No threda finished correctly");;
+			System.out.println("No threda finished correctly "+e.getCause());
 		}finally{
 			ex.shutdown();
 		}
