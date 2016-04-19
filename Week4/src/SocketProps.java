@@ -5,7 +5,7 @@ public class SocketProps{
 
 		Socket socket = new Socket();
 		try {
-			SocketAddress address = new InetSocketAddress("www.google.com", 90);
+			SocketAddress address = new InetSocketAddress("131.114.218.139", 8905);
 			socket.setSoTimeout(100000);
 			socket.connect(address,10000);
 			System.out.println("Connected to " + socket.getInetAddress()
