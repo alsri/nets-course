@@ -8,7 +8,7 @@ public class Student1 implements Serializable{
 	private static final long serialVersionUID = 2L;
 	
 	private String fname, lname;
-	private Address address;
+	private transient Address address;
 	
 	public Student1(String fname, String lname,String street, int no){
 		this.fname=fname;
@@ -29,10 +29,10 @@ public class Student1 implements Serializable{
 	private void writeObject(ObjectOutputStream out){
 		try {
 			out.defaultWriteObject();
-			out.write(this.address.getNo());
+			out.writeInt(this.address.getNo());
 			out.writeUTF(this.address.getStreet());
 		} catch (IOException e) {
-			System.out.println("Could not write object");
+			System.out.println("Could not write object"+e.getMessage());
 		}
 	}
 	
@@ -47,6 +47,10 @@ public class Student1 implements Serializable{
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class not found or wrong version");
 		}
+	}
+
+	public String getLname() {
+		return this.lname;
 	}
 
 }

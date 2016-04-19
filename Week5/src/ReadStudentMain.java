@@ -1,3 +1,4 @@
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,14 +14,13 @@ public class ReadStudentMain {
 //			for (Student s : stds){
 //				System.out.println(s);
 //			}
-			Student s;
+			Student1 s;
 			while (true){
 				try{
-				s = (Student) in.readUnshared();
+				s = (Student1) in.readObject();
 				System.out.println(s);
-				} catch (IOException e){
-					System.out.println("Stream ended or error");
-					e.printStackTrace();
+				} catch (EOFException e){
+					System.out.println("Stream ended");
 					break;
 				}
 			}

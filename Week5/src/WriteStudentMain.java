@@ -7,15 +7,15 @@ import java.util.ArrayList;
 public class WriteStudentMain {
 
 	public static void main(String[] args) {
-		ArrayList<Student> students= new ArrayList<Student>();
-		students.add(new Student("Robert","Brown","Dawson",12));
-		students.add(new Student("Michael","Reds","Pearse",40));
-		students.add(new Student("Joanna","Moore","Collins",62));
-		students.add(new Student("Ann","Brown","Buffallo",132));
+		ArrayList<Student1> students= new ArrayList<Student1>();
+		students.add(new Student1("Robert","Brown","Dawson",12));
+		students.add(new Student1("Michael","Reds","Pearse",40));
+		students.add(new Student1("Joanna","Moore","Collins",62));
+		students.add(new Student1("Ann","Brown","Buffallo",132));
 		
 		try (ObjectOutputStream out= new ObjectOutputStream(new FileOutputStream("students.ser"));) {
 //			out.writeObject(students);
-			for (Student s : students){
+			for (Student1 s : students){
 				out.writeObject(s);
 			}
 		} catch (FileNotFoundException e) {

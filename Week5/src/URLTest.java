@@ -8,8 +8,7 @@ public class URLTest {
 
 	public static void main(String[] args) {
 		try {
-			URL url= new URL("https://docs.oracle.com/"
-					+ "javase/tutorial/networking/urls/creatingUrls.html");
+			URL url= new URL("http://duckweed.isti.cnr.it:5000/top/20150102");
 			try(BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));){
 				String line;
 				while ((line=in.readLine())!=null){
